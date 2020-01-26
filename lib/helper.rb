@@ -14,7 +14,7 @@ module Helper
   def args_missing?(args) 
     if args.empty?
       puts ARG_MISSING_ERROR
-      return true 
+      exit
     end
   end
 

@@ -25,12 +25,14 @@ module CustomStorage
       end
       @items << record
       save_file
+      puts "Record Saved!"
     end
     
     def delete(data)
       key, value = data.first.split('=')
       @items.select! {|item| item[key] != value }
       save_file
+      puts "Record(s) deleted!"
     end
     
     def find(data)
@@ -46,7 +48,7 @@ module CustomStorage
       matched = @items.select {|item| item.values.include?(value)}
       if !fields.empty?
         matched.each do |match|
-          selected = match.slice(*fields) # select{|key, value| fields.include?(key)}
+          selected = match.slice(*fields)
           unless selected.empty?
             puts "--", selected
             count += 1

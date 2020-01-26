@@ -7,38 +7,22 @@ include CustomStorage
 
 store = Store.new
 
-LIST = ['add', 'delete', 'find', 'list', 'help', 'exit'].sort
-# To auto complete command
-comp = proc { |s| LIST.grep(/^#{Regexp.escape(s)}/) }
-Readline.completion_append_character = " "
-Readline.completion_proc = comp
-
-help # TO display initial command help
-
-while input = Readline.readline("$ ", true)
-  
-  next if input.empty?
-  args = input.split(' ')
-  command = args.shift&.strip&.downcase
-
+if __FILE__ == $0
+  command = ARGV[0]
+  args = ARGV[1..-1]
   case command
-  when "add"
-    next if args_missing?(args)
-    store.add(args)
-  when "delete"
-    next if args_missing?(args)
-    store.delete(args)
-  when "find"
-    next if args_missing?(args)
-    store.find(args)
-  when "list"
+  when 'list','-l'
     store.list
-  when "help"
+  when 'add','-a'
+    args_missing?(args)
+    store.add(args)
+  when 'delete', '-d'
+    args_missing?(args)
+    store.delete(args)
+  when 'find', '-f'
+    args_missing?(args)
+    store.find(args)
+  when 'help', '-h'
     help
-  when "exit"
-    puts "Byeeeee!"
-    exit
-  else
-    puts "Command \"#{command}\" not found"
   end
 end

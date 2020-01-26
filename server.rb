@@ -1,9 +1,13 @@
 require "readline"
-require "./lib/helper.rb"
+require "./lib/helper"
+require "./lib/store"
+
 include Helper
+include CustomStorage
 
+store = Store.new
 
-LIST = ['add', 'delete', 'find', 'help', 'exit'].sort
+LIST = ['add', 'delete', 'find', 'list', 'help', 'exit'].sort
 # To auto complete command
 comp = proc { |s| LIST.grep(/^#{Regexp.escape(s)}/) }
 Readline.completion_append_character = " "
@@ -20,13 +24,15 @@ while input = Readline.readline("$ ", true)
   case command
   when "add"
     next if args_missing?(args)
-    puts "inside: #{command}"
+    store.add(args)
   when "delete"
     next if args_missing?(args)
-    puts "inside: #{command}"
+    store.delete(args)
   when "find"
     next if args_missing?(args)
-    puts "inside: #{command}"
+    store.find(args)
+  when "list"
+    store.list
   when "help"
     help
   when "exit"

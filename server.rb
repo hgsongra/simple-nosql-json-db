@@ -7,5 +7,22 @@ Readline.completion_append_character = " "
 Readline.completion_proc = comp
 
 while input = Readline.readline("$ ", true)
-  puts input
+  next if input.empty?
+  command = input&.strip&.downcase
+
+  case command
+  when "add"
+    puts "inside: #{command}"
+  when "delete"
+    puts "inside: #{command}"
+  when "find"
+    puts "inside: #{command}"
+  when "help"
+    puts "inside: #{command}"
+  when "exit"
+    puts "Byeeeee!"
+    exit
+  else
+    puts "Command \"#{command}\" not found"
+  end
 end

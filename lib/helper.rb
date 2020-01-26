@@ -1,4 +1,5 @@
 module Helper
+  ARG_MISSING_ERROR = "Argument(s) missing"
 
   def help
     puts "Commands:"
@@ -7,6 +8,13 @@ module Helper
     puts "    delete key=value                                Delete a record or records by a key-value pair"
     puts "    find value [fields=field1,field2,...]           Find all the records which contain a particular value"
     puts "    exit                                            Exit from terminal or press CTRL+^C"
+  end
+
+  def args_missing?(args) 
+    if args.empty?
+      puts ARG_MISSING_ERROR
+      return true 
+    end
   end
 
 end

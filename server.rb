@@ -12,15 +12,20 @@ Readline.completion_proc = comp
 help # TO display initial command help
 
 while input = Readline.readline("$ ", true)
+  
   next if input.empty?
-  command = input&.strip&.downcase
+  args = input.split(' ')
+  command = args.shift&.strip&.downcase
 
   case command
   when "add"
+    next if args_missing?(args)
     puts "inside: #{command}"
   when "delete"
+    next if args_missing?(args)
     puts "inside: #{command}"
   when "find"
+    next if args_missing?(args)
     puts "inside: #{command}"
   when "help"
     help

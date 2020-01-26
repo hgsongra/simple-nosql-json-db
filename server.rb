@@ -1,10 +1,15 @@
 require "readline"
+require "./lib/helper.rb"
+include Helper
+
 
 LIST = ['add', 'delete', 'find', 'help', 'exit'].sort
 # To auto complete command
 comp = proc { |s| LIST.grep(/^#{Regexp.escape(s)}/) }
 Readline.completion_append_character = " "
 Readline.completion_proc = comp
+
+help # TO display initial command help
 
 while input = Readline.readline("$ ", true)
   next if input.empty?
@@ -18,7 +23,7 @@ while input = Readline.readline("$ ", true)
   when "find"
     puts "inside: #{command}"
   when "help"
-    puts "inside: #{command}"
+    help
   when "exit"
     puts "Byeeeee!"
     exit

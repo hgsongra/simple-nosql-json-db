@@ -5,8 +5,9 @@ module CustomStorage
     
     attr_accessor :items
 
-    def initialize
+    def initialize(file_name='nosql')
       @items = []
+      @file_name = file_name
       set_items
     end
     
@@ -62,20 +63,22 @@ module CustomStorage
       end
       puts "--------------------------"
       puts "#{count} record(s) matched"
+      count
     end
 
     private
 
-    def file_name
-      "./file/nosql.json".freeze
+    def file_path
+      "./file/#{@file_name}.json".freeze
     end
 
     def set_items
-      return unless File::exists?(file_name)
-      @items = JSON.load(File.read(file_name)) || []
+      return unless File::exists?(file_path)
+      @items = JSON.load(File.read(file_path)) || []
     end
+
     def save_file
-      File.write(file_name, @items.to_json)
+      File.write(file_path, @items.to_json)
     end
   end
 end

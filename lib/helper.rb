@@ -16,6 +16,7 @@ module Helper
       puts ARG_MISSING_ERROR
       exit
     end
+    false
   end
 
 end

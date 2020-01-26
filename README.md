@@ -5,11 +5,12 @@ Simple NoSQL JSON DB: `hql`
 
 Getting Started
 ----------
-`hql` doesn't require any third-party gems so you can clone the code anywhere and use it as long as it's full fill the below requirements:
+Clone the code anywhere and use it as long as it's full fill the below requirements:
 
     $ ruby -v
     2.5.1p57
-
+    
+    # Run below command from root directory
     $ bin/setup
     Doesn't matter what it's print here ;)
     .
@@ -61,7 +62,7 @@ Delete record by key-value pair.
     $ hql delete name=jon
     Record(s) deleted!
 
-It'll delete all the matching records from store data where the record contains the key name `name` and value `Jon`. To verify the changes you can run `hql -l` it'll display remaining records.
+It'll delete all the matching records from store data, where the record contains the key name `name` and value `jon`. To verify the changes you can run `hql -l` it'll display remaining records.
 
 Find record `find` or `-f`
 ----------
@@ -103,10 +104,12 @@ That's it.
 
 Important
 ----------
-All the data will save under the `file` directory in the root directory with default filename `nosql.json` if you want to change the file name open `server.rb` file in the root directory.
+All the data will save under the `file` directory in the root directory with default filename `nosql.json`. If you want to change the file name, open `server.rb` file in the root directory.
 
 Replace the below line at 8
+
     `store = Store.new` to
+
     `store = Store.new('desire_file_name_without_any_extension')`
 
-NOTE: all key names and values are case sensitive.
+*NOTE*: all key names and values are case sensitive.
